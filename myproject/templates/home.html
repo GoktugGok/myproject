@@ -6,22 +6,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
+
 <body>
     
     <h1>Home Template</h1>
-    <div>
-
-        <a href="{% url 'create-room'%}">Create Room</a>
-         <div>
-            {% for room in rooms %}
-                <span>@{{room.host.username}}</span>
-                <h3>{{room.id}}-- <a href="{% url 'room' room.id %}">{{room.name}}</a></h3>
-                <small>{{room.topic.name}}</small>
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-3">
+                <h3>Browse Topics</h3>
                 <hr>
-            {% endfor %}
-            
-         </div>
+                <div>
+                    <a href="{% url 'home' %}">ALL</a>
+                </div>
+                {% for topic in topics %}
+                <div>
+                    <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-6">
+                <a href="{% url 'create-room'%}">Create Room</a>
+                <div>
+                    {% for room in rooms %}
+                        <a href="{% url 'update-room' room.id %}">Edit</a>
+                        <a href="{% url 'delete-room' room.id %}">Delete</a>
+                        <span>@{{room.host.username}}</span>
+                        <h3>{{room.id}}-- <a href="{% url 'room' room.id %}">{{room.name}}</a></h3>
+                        <small>{{room.description}}</small><br>
+                        <small>{{room.topic.name}}</small>
+                        <hr>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
     </div>
     
 </body>
