@@ -13,7 +13,6 @@
     <form method="GET" action="{% url 'home' %}">
         <input type="text" name="q" placeholder="Search Rooms....">
     </form>
-    <p>Hello {{request.user}}</p>
 
     {% if request.user.is_authenticated %}
         <p>Hello {{request.user}}</p>
