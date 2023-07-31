@@ -60,17 +60,19 @@ def registerPage(request):
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
+    all_rooms = Room.objects.all().count()
     rooms = Room.objects.filter(
         Q(topic__name__icontains = q) |
         Q(name__icontains=q) |
         Q(description__icontains=q) 
         )
     topics = Topic.objects.all()
-    room_messages = Message.objects.all()  
+    room_messages = Message.objects.filter(Q(room__topic__name__icontains=q))
     context = {
         'rooms':rooms,
         'topics':topics,
-        'room_messages':room_messages
+        'room_messages':room_messages,
+        'all_rooms':all_rooms
                }
     return render(request,'home.html',context)
 
@@ -95,18 +97,35 @@ def room(request,pk):
 
     return render(request,'room.html',context)
 
+def userProfile(request,pk):
+    user = User.objects.get(id=pk)
+    all_rooms = Room.objects.all().count()
+    rooms = user.room_set.all()
+    topics = Topic.objects.all()
+    room_messages = user.message_set.all()
+    context = {
+        'user':user,
+        'rooms':rooms,
+        'room_messages':room_messages,
+        'topics':topics,
+        'all_rooms':all_rooms
+        }
+    return render(request,'profile.html',context)
+
 @login_required(login_url='login')
 def createRoom(request):
     form = RoomForm()
     
-    if request.user != None :
+    if request.user == None:
         messages.error(request,'you must login')
         return redirect('home')
     
     if request.method == 'POST':
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            room = form.save(commit=False)
+            room.host = request.user
+            room.save()
             return redirect('home')
 
     context = {'form':form}
@@ -147,11 +166,11 @@ def deleteRoom(request,pk):
 @login_required(login_url='login')
 def deleteMessage(request,pk):
     message = Message.objects.get(id=pk)
-    
+    room_id = message.room.id
     if request.user != message.user :
         messages.warning(request,'Your are not allowed here!!')
     
     if request.method == 'POST':
         message.delete()
-        return redirect('room')
+        return redirect('room',room_id)
     return render(request,'delete.html',{'obj':message})

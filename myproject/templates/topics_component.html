@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4 class="text-center mb-4 ">Browse Topics</h4>
+    <div class="shadow-lg p-3 mb-5  rounded pt-4 rounded-5 ">
+        <ul class="">
+            <li class="" style=" list-style-type:none;">
+                <a href="{% url 'home' %}" class="d-flex justify-content-between align-items-center fs-5">ALL <span id="span_count" class="text-center me-5 px-3 py-2 rounded-4">{{all_rooms}}</span></a>
+            </li>
+        </ul>
+
+        {% for topic in topics %}
+        <ul>
+            <li  style=" list-style-type:none;">
+                <a href="{% url 'home' %}?q={{topic.name}}" class="d-flex justify-content-between align-items-center fs-5 mt-3">{{topic.name}} <span id="span_count"  class="text-center me-5 px-3 py-2 rounded-4">{{topic.room_set.all.count}}</span></a>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>

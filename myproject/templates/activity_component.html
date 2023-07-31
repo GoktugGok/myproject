@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <div style="background-color: #2c383b;" class="p-2 rounded-bottom rounded-5 ">
+            <h3 class="text-center mt-2">Recent Activity</h3>
+        </div>
+        <div style="background-color:#465357;" class=" py-3 ">
+                {% for message in room_messages %}
+                    <div class="shadow-lg p-3 mb-5 mx-1 mb-3 ">
+                        <div>
+                            <small class=""><a href="{% url 'user-profile' message.user.id %}" class="fs-5 me-5 mb-3">@{{message.user}}</a><br><p class="text-light fs-6">{{message.created|timesince}}</p></small>
+                        </div>
+                        <div>
+                            <small class="text-info">Replied to "{{message.room}}"</small>
+                        </div>
+                        <div >
+                            <p class="text-info bg-dark p-3 ps-4 mt-4 rounded-5">{{message.body}}</p>
+                        </div>
+                        <div class=" mt-3 mb-2  text-end">
+                            {% if request.user == message.user %}
+                                <a href="{% url 'delete-message' message.id %}" class="p-2 px-3 bg-danger rounded-5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                  </svg></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+        </div>
+    
+</body>
+</html>

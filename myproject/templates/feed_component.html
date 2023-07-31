@@ -1,0 +1,54 @@
+        
+        
+        
+        
+        
+        <div class="w-100 d-flex justify-content-between mb-3 align-items-center " style="height: 50px;">
+            <p class="text-light text-center mt-3">{{rooms.all.count}} rooms available</p>
+            <a href="{% url 'create-room'%}" style="background-color: green;" class="p-3  rounded-5 me-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
+                    <path fill-rule="evenodd" d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"/>
+                </svg> Create Room
+            </a>
+        </div>
+        {% for room in rooms %}
+            <div id="rooms" class="p-4 m-3 rounded-4">
+                <div class="d-flex justify-content-end mb-3">
+                    {% if request.user == room.host %}
+                        <a href="{% url 'update-room' room.id %}" class="me-3 p-2 px-3 bg-warning rounded-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                          </svg></a>
+                        <a href="{% url 'delete-room' room.id %}" class="p-2 px-3 bg-danger rounded-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                          </svg></a>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="{% url 'user-profile' room.host.id %}" class="fs-6  text-center text-light">@{{room.host.username}}</a>
+                    <span class="text-center text-light fs-6">{{room.created|timesince}}</span>
+                </div>
+
+                <div class="my-3">
+                    <h3><a href="{% url 'room' room.id %}">{{room.name}}</a></h3>
+                </div>
+
+                <div>
+                    <small class="text-light ">{{room.description}}</small><br>
+                </div>
+                <hr class="border border-danger border-1 opacity-50">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-light">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill mb-1 me-1 text-primary" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                        </svg>
+                        Joined
+                      {{room.participants.count}}
+                    </span>
+                    <span class="fs-5 text-light  p-2 rounded-4" style="background-color: #222729;">{{room.topic.name}}</span>
+                </div>
+                
+            </div>
+        {% endfor %}
+        

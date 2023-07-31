@@ -1,61 +1,18 @@
 {% extends 'main.html' %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-</head>
 
-<body>
-    
-    <h1>Home Template</h1>
     <div class="container-fluid">
         <div class="row ">
             <div class="col-3">
-                <h3>Browse Topics</h3>
-                <hr>
-                <div>
-                    <a href="{% url 'home' %}">ALL</a>
-                </div>
-                {% for topic in topics %}
-                <div>
-                    <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
-                </div>
-                {% endfor %}
+               {% include 'topics_component.html' %}
             </div>
             <div class="col-6">
-                <h3>{{rooms.all.count}} rooms available</h3>
-                <a href="{% url 'create-room'%}">Create Room</a>
-                <div>
-                    {% for room in rooms %}
-                        <div>
-                            {% if request.user == room.host %}
-                                <a href="{% url 'update-room' room.id %}">Edit</a>
-                                <a href="{% url 'delete-room' room.id %}">Delete</a>
-                            {% endif %}
-                            <span>@{{room.host.username}}</span>
-                            <h3>{{room.id}}-- <a href="{% url 'room' room.id %}">{{room.name}}</a></h3>
-                            <small>{{room.description}}</small><br>
-                            <small>{{room.topic.name}}</small>
-                            <hr>
-                        </div>
-                    {% endfor %}
-                    
-                </div>
+                <h3>Study Room</h3>
+                {% include 'feed_component.html' %}
             </div>
             <div class="col-3">
-                <h3>Recent Activity</h3>
-                <hr>
-                {% for room_message in room_messages %}
-                    <p>{{room_message.body}}</p>
-                {% endfor %}
+                {% include 'activity_component.html' %}
             </div>
         </div>
     </div>
-    
-</body>
-</html>
 {% endblock %}
