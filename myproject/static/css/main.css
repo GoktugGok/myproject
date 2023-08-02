@@ -12,13 +12,16 @@ a{
     text-decoration: none;
     color: white;
 }
-h1,h2,h3,h4,h5{
+h1,h2,h3,h4,h5,h6{
     font-family: 'REM', sans-serif;
     color: white;
 }
 #span_count{
-    background-color: #465357;
+    background-color: #f2f6f7;
 }
 #rooms{
     background-color:#465357;
+}
+.font-1{
+    font-family: 'Kanit', sans-serif;
 }
