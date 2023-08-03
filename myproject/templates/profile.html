@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     {% block content %}
     
@@ -21,6 +22,9 @@
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                       </svg>
                     <h1 class="text-center mt-2">{{user.username}}</h1>
+                    {% if request.user == user %}
+                        <div class="d-flex justify-content-center"><a href="{% url 'update-user' %}" class=" p-3 w-25 rounded-5 Edit btn btn-outline-info mt-2 text-white">Edit Profile</a></div>
+                    {% endif %}
                 </div>
                 <div class="h-25 ">
                     <h3>About</h3>

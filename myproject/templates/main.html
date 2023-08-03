@@ -28,12 +28,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
-<body style="background-color:#16453e;">
+<body style="background-color:#16453e; height: 100%; width: 100%;">
     {% include 'navbar.html' %}
     {% if messages %}
     <div class="messages ">
         {% for message in messages %}
-        <h5 class="alert alert-{{message.tags}}">{{message}}</h5>
+        <p class="alert alert-{{message.tags}} p-2">{{message}}</p>
         {% endfor %}
 
     </div>

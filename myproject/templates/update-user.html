@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    .form_group > input{
+        width: 100%;
+        background-color: black;
+        border: 2px solid greay;
+        border-radius: 4px;
+        color:white;
+    }
+    .form_group > select{
+        width: 100%;
+        background-color: black;
+        border: 2px solid greay;
+        border-radius: 4px;
+        color:white;
+    }
+    .form_group > textarea{
+        width: 100%;
+        height: 100px;
+        overflow-x: hidden; overflow-y: scroll;
+        background-color: black;
+        border: 2px solid greay;
+        border-radius: 4px;
+        color:white;
+    }
+    </style>
+<div class="d-flex justify-content-center align-items-center ">
+    <div class="col-6">
+        <div class="bg-secondary px-3 py-2 d-flex justify-content-between  align-items-center rounded-top ">
+            <div>
+                <a href="{% url 'home'%}" class="px-3 py-2  " style="font-family: 'Kanit', sans-serif;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    </svg>
+                    CREATE/UPDATE STUDY ROOM
+                </a>
+            </div>
+        </div>
+        <div style="background-color:#242424;font-family: 'Kanit', sans-serif;">
+            <form method="POST" action="" class="text-light mx-3 pt-3 ">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="mb-3 form_group ">
+                    <label for="profile_pic" class="form-label">{{field.label}}</label>
+                    {{field}}
+                </div>
+                {% endfor %}
+
+                <div class="d-flex justify-content-end ">
+                    <a href="{% url 'home' %}" class="mb-3 me-2 btn btn-danger">CANCEL</a>
+                    <input type="submit" value="SUBMIT" class="mb-3 btn btn-success border border-success">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock  %}

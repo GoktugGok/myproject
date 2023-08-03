@@ -1,20 +1,27 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     {% extends 'main.html' %}
     {% block content %}
-    <form method="POST" action="">
-        {% csrf_token %}
-        <p>Are you sure you want to delete {{obj}}</p>
-        <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
-        <input type="submit" value="Confirm" >
-    </form>
+    <div class=" d-flex justify-content-center align-items-center mt-5 ">
+        <div class="col-md-6 col-12">
+            <div class="bg-secondary px-3 py-2 d-flex justify-content-between  align-items-center rounded-top ">
+                <div>
+                    <a href="{{request.META.HTTP_REFERER}}" class="px-3 py-2  " style="font-family: 'Kanit', sans-serif;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                        </svg>
+                        CREATE/UPDATE STUDY ROOM
+                    </a>
+                </div>
+            </div>
+            <div style="background-color:#242424;font-family: 'Kanit', sans-serif; " class="rounded-bottom">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <p class="text-light fs-5 text-center pt-5">Are you sure you want to delete <small class="text-info ">" {{obj}} "</small>  ?</p>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <input type="submit" class="btn btn-danger my-3 text-center fs-5" value="Confirm" >
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
     {% endblock  %}
-</body>
-</html>

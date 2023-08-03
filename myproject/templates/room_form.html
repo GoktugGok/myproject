@@ -32,14 +32,6 @@
     border-radius: 4px;
     color:white;
 }
-.custom-select {
-    position: relative;
-    font-family: Arial;
-  }
-  
-  .custom-select select {
-    display: none; /*hide original SELECT element:*/
-  }
 </style>
 <body>
     <div class="d-flex justify-content-center align-items-center ">
@@ -58,19 +50,14 @@
                 <form method="POST" action="" class="text-light mx-3 pt-3 ">
                     {% csrf_token %}
                     <div class="mb-3 form_group ">
-                        <label for="room_topic" class="form-label">Topic Name</label>
-                        <input required type="text" class="" name="topic" list="topic-list" />
-                        <datalist id="topic-list" >
-                            <div class="custom-select">
-                                <select id="room_topic" class="bg-dark">
-                                    {% for topic in topics %}
+                        <label for="room_topic" class="form-label">Enter a Topic</label>
+                        <input type="text" name="topic" value="{{room.topic.name}}" list="topic-list">
+                        <datalist id="topic-list">
+                                {% for topic in topics %}
                                     <option value="{{topic.name}}">{{topic.name}}</option>
-                                    {% endfor %}
-                                    
-                                </select>
-                            </div>
-                            
-                        </datalist>
+                                {% endfor %}
+                        </datalist>    
+                       
                     </div>
                     <div>
                         

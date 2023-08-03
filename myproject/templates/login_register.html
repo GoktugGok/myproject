@@ -1,42 +1,107 @@
 {% extends 'main.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     {% block content %}
-        {% if page == 'login' %}
-        <div>
+    <style>
+        .form_group > input{
+            width: 100%;
+            background-color: black;
+            border: 2px solid greay;
+            border-radius: 4px;
+            color:white;
+        }
+        .form_group > select{
+            width: 100%;
+            background-color: black;
+            border: 2px solid greay;
+            border-radius: 4px;
+            color:white;
+        }
+        .form_group > textarea{
+            width: 100%;
+            height: 100px;
+            overflow-x: hidden; overflow-y: scroll;
+            background-color: black;
+            border: 2px solid greay;
+            border-radius: 4px;
+            color:white;
+        }
+        </style>
+    <div class=" d-flex justify-content-center align-items-center mx-5 ">
+        <div class="col-md-5 col-12 mb-5">
+            {% if page == 'login' %}
+            <div class="bg-secondary px-3 py-2 d-flex justify-content-center  align-items-center rounded-top w-100 ">
+                <div >
+                       <h3 class="px-3 py-2 " style="font-family: 'Kanit', sans-serif;"> LOGIN</h3>
+                </div>
+            </div>
+            
+            <div style="background-color:#242424;font-family: 'Kanit', sans-serif; " class="rounded-bottom">
+                <p class="text-info fs-5 text-center pt-5">Find your study partner</p>
+               
+             <div>
             <form method="POST" action="">
                 {% csrf_token %}
-                <label >Username:</label>
-                <input type="text" name="username" placeholder=" Enter Username">
-
-                <label >Password:</label>
-                <input type="password" name="password" placeholder=" Enter Password">
-
-                <input type="submit" value="Login">
+                <div class="form_group mx-3">
+                    <label class=" mb-2 text-light">Username:</label>
+                    <input type="text" name="username" >
+                </div>
+                <div class="form_group mx-3 mt-3">
+                    <label class=" mb-2 text-light" >Password:</label>
+                    <input type="password" name="password" >
+                </div>
+                <button class="btn btn-info mt-3 ms-3 " type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                        <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                        <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                      </svg>
+                      Login
+                </button>
+                
             </form>
 
-            <p>havent signed up yet?</p>
-            <a href="{% url 'register' %}">Sign up</a>
+            <p class="text-center text-light">havent signed up yet?</p>
+            <div class="d-flex justify-content-center  align-items-center pb-3">
+                <a class="text-center text-info w-100" href="{% url 'register' %}">Sign Up</a>
+            </div>    
         </div>
 
         {% else %}
+        <div class="bg-secondary px-3 py-2 d-flex justify-content-center  align-items-center rounded-top w-100 ">
+            <div >
+                   <h3 class="px-3 py-2 " style="font-family: 'Kanit', sans-serif;"> Register</h3>
+            </div>
+        </div>
+        
+        <div style="background-color:#242424;font-family: 'Kanit', sans-serif; " class="rounded-bottom">
+            <p class="text-info fs-5 text-center pt-5">Find your study partner</p>
+           
+         <div>
         <div>
             <form method="POST" action="">
                 {% csrf_token %}
-                {{form.as_p}}
-
-                <input type="submit" value="Register">
+                {% for field in form %}
+                <div class="form_group mx-3 mt-4">
+                    <label for="room_name" class="text-light mb-2">{{field.label}}</label>
+                    {{field}}
+                </div>
+                {% endfor %}
+                <button class="btn btn-info mt-3 ms-3 " type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                        <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                        <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                      </svg>
+                      Register
+                </button>
             </form>
-            <p>Already signed up yet?</p>
-            <a href="{% url 'login' %}">Login</a>
+
+            
+            <p class="text-center text-light">havent signed up yet?</p>
+            <div class="d-flex justify-content-center  align-items-center pb-3">
+                <a class="text-center text-info w-100" href="{% url 'login' %}">Sign Up</a>
+            </div> 
         </div>
         {% endif %}
+            </div>
+        </div>
+    </div>
+        
     {% endblock  %}
-</body>
-</html>
