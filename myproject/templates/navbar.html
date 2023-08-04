@@ -4,21 +4,22 @@
       }
     
 </style>
-
-    <div class="d-flex justify-content-around shadow-lg p-3 mb-5 w-100 mb-3 py-4" style="background-color:#242424">
-        <div>
-            <a href="{% url 'home' %}">
-                <h1 class="headline" style="font-family: 'Handjet', cursive;">MyWebsite</h1>
-            </a>
-        </div>
-        <div class="mt-2">
-            <form method="GET" action="{% url 'home' %}" class="search" >
-                <i class="fa fa-search"></i>
-                <input class="form-control  text-light bg-dark shadow-lg rounded-5 " type="text" name="q" placeholder="Search Rooms...." style="width: 500px;">
-            </form>
-        </div>
-    
-        <div class="mt-2">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark mb-5 py-3">
+    <div class="container">
+        <a href="{% url 'home' %}" class="me-5">
+            <h1 class="headline" style="font-family: 'Handjet', cursive;">MyWebsite</h1>
+        </a>
+      <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-light"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class=" w-50 m-lg-auto">
+                <form class=" " role="search">
+                    <input class="form-control me-2 w-100 text-light bg-dark shadow-lg rounded-5 " type="text" name="q" placeholder="Search Rooms....">
+                </form>
+            </div>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
             {% if request.user.is_authenticated %}
             <div class="dropdown" style="">
                 <button class="btn  dropdown-toggle text-info fs-5" style="font-family: 'Kanit', sans-serif;"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -26,15 +27,51 @@
                 </button>
                 <ul class="dropdown-menu  ">
                     <li><a class="dropdown-item " href="{% url 'user-profile' request.user.id %}" style="font-family: 'Kanit', sans-serif;">Profile</a></li>
-                  <li><a class="dropdown-item " href="{% url 'logout' %}" style="font-family: 'Kanit', sans-serif;">Logout</a></li>
+                <li><a class="dropdown-item " href="{% url 'logout' %}" style="font-family: 'Kanit', sans-serif;">Logout</a></li>
                 </ul>
             </div>
             {% else %}
             <div class="fs-5 btn  ">
                 <a href="{% url 'login' %}" style="font-family: 'Kanit', sans-serif;">Login</a>
             </div>
-               
+            
             {% endif %}
-        </div>
+          </li>
+        </ul>
+        
+      </div>
     </div>
+  </nav>
+{% comment %} <div class="d-flex justify-content-around shadow-lg p-3 mb-5 w-100 mb-3 py-4" style="background-color:#242424">
+    <div>
+        <a href="{% url 'home' %}">
+            <h1 class="headline" style="font-family: 'Handjet', cursive;">MyWebsite</h1>
+        </a>
+    </div>
+    <div class="mt-2">
+        <form method="GET" action="{% url 'home' %}" class="search" >
+            <i class="fa fa-search"></i>
+            <input class="form-control  text-light bg-dark shadow-lg rounded-5 " type="text" name="q" placeholder="Search Rooms...." style="width: 500px;">
+        </form>
+    </div>
+
+    <div class="mt-2">
+        {% if request.user.is_authenticated %}
+        <div class="dropdown" style="">
+            <button class="btn  dropdown-toggle text-info fs-5" style="font-family: 'Kanit', sans-serif;"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @{{request.user}}
+            </button>
+            <ul class="dropdown-menu  ">
+                <li><a class="dropdown-item " href="{% url 'user-profile' request.user.id %}" style="font-family: 'Kanit', sans-serif;">Profile</a></li>
+              <li><a class="dropdown-item " href="{% url 'logout' %}" style="font-family: 'Kanit', sans-serif;">Logout</a></li>
+            </ul>
+        </div>
+        {% else %}
+        <div class="fs-5 btn  ">
+            <a href="{% url 'login' %}" style="font-family: 'Kanit', sans-serif;">Login</a>
+        </div>
+           
+        {% endif %}
+    </div>
+</div> {% endcomment %}
 

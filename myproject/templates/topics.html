@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class=" d-flex justify-content-center align-items-center mt-5 mb-3">
+    <div class="col-md-7 col-10">
+        <div class="bg-secondary px-3 py-2 d-flex justify-content-between  align-items-center rounded-top ">
+            <div>
+                <a href="{{request.META.HTTP_REFERER}}" class="px-3 py-2  " style="font-family: 'Kanit', sans-serif;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    </svg>
+                    BROWSE TOPICS
+                </a>
+            </div>
+        </div>
+        <div style="background-color:#242424;font-family: 'Kanit', sans-serif; " class="rounded-bottom pb-1 px-3">
+            <div>
+                <form action="" method="GET">
+                    {% csrf_token %}
+                    <input type="search" name="q" id="" class="w-100 bg-info p-2 rounded-3 mt-3 text-light" placeholder="Search Topics ">
+                </form>
+            </div>
+            <ul style=" list-style:none; " class="m-0 p-0" >
+                <li class="" style=" list-style-type:none;">
+                    <div class="d-flex justify-content-between align-items-center ms-3 pt-2">
+                        <a href="{% url 'home' %}" style="font-family: 'Kanit', sans-serif;" class="d-flex justify-content-between ms-3 align-items-center fs-5 mt-3 text-info">ALL</a>
+                        <span   class="text-center fs-5 text-light me-3 px-3 py-2 rounded-4">{{topics.count}}</span>
+                    </div>
+                </li>
+                <hr class="text-light">
+            </ul>
+            {% for topic in topics %}
+            <ul style=" list-style:none;" class="m-0 p-0">
+                <li  style=" list-style:none;">
+                    <div class="d-flex justify-content-between align-items-center ms-3">
+                        <a href="{% url 'home' %}?q={{topic.name}}" style="font-family: 'Kanit', sans-serif;" class="d-flex  justify-content-between ms-3  align-items-center fs-5 mt-3 text-info">{{topic.name}}</a>
+                        <span id=""  style="font-family: 'Kanit', sans-serif;"  class="text-center fs-5 text-light me-3 px-3 py-2 rounded-4">{{topic.room_set.all.count}}</span>
+                    </div>
+                    
+                </li>
+                <hr class="text-light">
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock  %}

@@ -1,7 +1,10 @@
         
         
         
-        
+       <div class="d-flex justify-content-evenly align-items-center mb-4" style="font-family: 'Kanit', sans-serif;">
+        <button type="button" class="d-lg-none btn btn-success fs-5"><a href="{% url 'topics' %}">Browse Topics</a></button>
+        <button type="button" class="d-lg-none btn btn-success fs-5"><a href="{% url 'activity' %}">Recent Activity</a></button>
+       </div>
         <h3 style="font-family: 'Kanit', sans-serif;">Study Room</h3>
         <div class="w-100 d-flex justify-content-between mb-3 align-items-center " style="height: 50px; font-family: 'Kanit', sans-serif;">
             <p class="text-light text-center mt-3">{{rooms.all.count}} rooms available</p>

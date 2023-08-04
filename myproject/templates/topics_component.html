@@ -6,21 +6,36 @@
     <title>Document</title>
 </head>
 <body>
-    <h2 class="text-center mb-4 names" style="font-family: 'Borel', cursive;">Browse Topics</h2>
-    <div class="shadow-lg p-3 mb-5  rounded pt-4 rounded-5 border-2 border-top border-danger" style="background-color:#c9a646;">
-        <ul class="">
-            <li class="" style=" list-style-type:none;">
-                <a href="{% url 'home' %}" style="font-family: 'Kanit', sans-serif;" class="d-flex justify-content-between align-items-center fs-5 text-dark">ALL <span id="span_count" style="background-color: #f2f6f7;" class="text-center text-dark me-5 px-3 py-2 rounded-4">{{all_rooms}}</span></a>
-            </li>
-        </ul>
+    <div class="d-none d-lg-block">
+        <h2 class="text-center mb-4 names" style="font-family: 'Borel', cursive;">Browse Topics</h2>
+        <div class="shadow-lg  mb-5 pb-3  rounded pt-4 rounded-5 border-2 border-top border-danger" style="background-color:#c9a646;">
+            <ul style=" list-style:none; " class="m-0 p-0" >
+                <li class="" style=" list-style-type:none;">
+                    <div class="d-flex justify-content-md-between align-items-center ms-3">
+                        <a href="{% url 'home' %}" style="font-family: 'Kanit', sans-serif;" class="d-flex justify-content-md-between ms-3 align-items-center fs-5 mt-3 text-dark">ALL</a>
+                        <span   class="text-center fs-5 text-light me-3 px-3 py-2 rounded-4">{{all_rooms}}</span>
+                    </div>
+                </li>
+            </ul>
 
-        {% for topic in topics %}
-        <ul>
-            <li  style=" list-style-type:none;">
-                <a href="{% url 'home' %}?q={{topic.name}}" style="font-family: 'Kanit', sans-serif;" class="d-flex justify-content-between align-items-center fs-5 mt-3 text-dark">{{topic.name}} <span id="span_count" style="background-color: #f2f6f7;"  class="text-center text-dark me-5 px-3 py-2 rounded-4">{{topic.room_set.all.count}}</span></a>
-            </li>
-        </ul>
-        {% endfor %}
+            {% for topic in topics %}
+            <ul style=" list-style:none;" class="m-0 p-0">
+                <li  style=" list-style:none;">
+                    <div class="d-flex justify-content-md-between align-items-center ms-3">
+                        <a href="{% url 'home' %}?q={{topic.name}}" style="font-family: 'Kanit', sans-serif;" class="d-flex  justify-content-md-between ms-3  align-items-center fs-5 mt-3 text-dark">{{topic.name}}</a>
+                        <span id=""  style="font-family: 'Kanit', sans-serif;"  class="text-center fs-5 text-light me-3 px-3 py-2 rounded-4">{{topic.room_set.all.count}}</span>
+                    </div>
+                    
+                </li>
+            </ul>
+            {% endfor %}
+            <a href="{% url 'topics' %}" class="d-flex justify-content-center align-items-center mt-3 btn" >
+                <h5 class="text-center text-dark" style="font-family: 'Kanit', sans-serif;">More</h5>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill text-dark mb-2" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
+            </a>
+        </div>
     </div>
 </body>
 </html>

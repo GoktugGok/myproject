@@ -1,9 +1,19 @@
+{% extends 'main.html' %}
 {% block content %}
-    <div class="d-none d-lg-block">
-        <div style="" class="p-2 rounded-bottom rounded-5">
-            <h2 class="text-center mt-2 activity romms" style="font-family: 'Borel', cursive;">Recent Activity</h2>
+<div class=" d-flex justify-content-center align-items-center mt-5 mb-3">
+    <div class="col-md-7 col-10">
+        <div class="bg-secondary px-3 py-2 d-flex justify-content-between  align-items-center rounded-top ">
+            <div>
+                <a href="{{request.META.HTTP_REFERER}}" class="px-3 py-2  " style="font-family: 'Kanit', sans-serif;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    </svg>
+                    RECENT ACTIVITIES
+                </a>
+            </div>
         </div>
-        <div style="" class="py-3 ">
+        <div style="background-color:#242424;font-family: 'Kanit', sans-serif; " class="rounded-bottom pb-1 px-3">
+            <div style="" class="py-3 ">
                 {% for message in room_messages %}
                     <div class="shadow-lg p-3 mb-5 mx-1 mb-3 rounded-3 border-top border-end border-danger-subtle "style="background-color:#5e5d5d;">
                         <div>
@@ -25,6 +35,7 @@
                     </div>
                 {% endfor %}
         </div>
+        </div>
     </div>
-    {% endblock  %}
-        
+</div>
+{% endblock  %}
