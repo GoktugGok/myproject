@@ -13,7 +13,7 @@
         <span class="navbar-toggler-icon text-light"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class=" w-50 m-lg-auto">
+            <div class=" w-50 m-md-auto">
                 <form class=" " role="search">
                     <input class="form-control me-2 w-100 text-light bg-dark shadow-lg rounded-5 " type="text" name="q" placeholder="Search Rooms....">
                 </form>
@@ -23,7 +23,7 @@
             {% if request.user.is_authenticated %}
             <div class="dropdown" style="">
                 <button class="btn  dropdown-toggle text-info fs-5" style="font-family: 'Kanit', sans-serif;"  type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    @{{request.user}}
+                    @{{request.user.username}}
                 </button>
                 <ul class="dropdown-menu  ">
                     <li><a class="dropdown-item " href="{% url 'user-profile' request.user.id %}" style="font-family: 'Kanit', sans-serif;">Profile</a></li>

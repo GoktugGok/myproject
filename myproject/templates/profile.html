@@ -1,13 +1,4 @@
 {% extends 'main.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     {% block content %}
     
     <div class="container-fluid">
@@ -15,7 +6,7 @@
             <div class="col-3">
                 {% include 'topics_component.html' %}
             </div>
-            <div class="col-6">
+            <div class="col-lg-6">
                 <div class="text-light text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -26,8 +17,11 @@
                         <div class="d-flex justify-content-center"><a href="{% url 'update-user' %}" class=" p-3 w-25 rounded-5 Edit btn btn-outline-info mt-2 text-white">Edit Profile</a></div>
                     {% endif %}
                 </div>
-                <div class="h-25 ">
-                    <h3>About</h3>
+                <div class="border border-light p-3 my-4  rounded-4 ">
+                    <h3 class="mx-3 mt-2 ">About</h3>
+                    <div class="">
+                        <p class="text-light mx-3 my-4 text-center">{{user.bio}}</p>
+                    </div>
                 </div>
                 
                 {% for room in rooms %}
@@ -41,5 +35,3 @@
         </div>
     </div>
     {% endblock  %}
-</body>
-</html>
