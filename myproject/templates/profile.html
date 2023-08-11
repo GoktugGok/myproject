@@ -8,10 +8,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="text-light text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                      </svg>
+                    <img src="{{user.avatar.url}}" style="width: 90px; height:90px;" class="rounded-circle" alt="">
                     <h1 class="text-center mt-2">{{user.username}}</h1>
                     {% if request.user == user %}
                         <div class="d-flex justify-content-center"><a href="{% url 'update-user' %}" class=" p-3 w-25 rounded-5 Edit btn btn-outline-info mt-2 text-white">Edit Profile</a></div>
@@ -20,7 +17,7 @@
                 <div class="border border-light p-3 my-4  rounded-4 ">
                     <h3 class="mx-3 mt-2 ">About</h3>
                     <div class="">
-                        <p class="text-light mx-3 my-4 text-center">{{user.bio}}</p>
+                        <p class="text-light mx-3 my-4 ">{{user.bio}}</p>
                     </div>
                 </div>
                 

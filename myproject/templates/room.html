@@ -51,22 +51,28 @@
                         </div>
                         <div class="mt-3">
                             <h6 class="text-light">HOSTED BY</h6>
-                            <h5 class="text-info" style="font-family: 'Kanit', sans-serif;">@{{room.host.username}}</h5>
+                            <div class="d-flex my-3">
+                                <img src="{{room.host.avatar.url}}" style="width:50px; height:50px;" class="rounded-5" alt="">
+                                <h5 class="text-info mt-2 ms-2" style="font-family: 'Kanit', sans-serif;">@{{room.host.username}}</h5>
+                            </div>
                             <p class="text-light my-3 fs-5" style="font-family: 'Roboto Condensed', sans-serif;">{{room.description}}</p>
-                            <div class="my-4 ms-1">
+                            <div class="my-4 ms-1 d-flex justify-content-end">
                                 <small class="bg-dark text-light p-3 rounded rounded-5 fs-6">{{room.topic}}</small>
                             </div>
                         </div>
                         
                         
-                    <div class="comment-wrapper bg-dark text-light" style="height: 300px;  overflow-x: hidden; overflow-y: scroll; width: auto;">
+                    <div class="comment-wrapper bg-dark text-light rounded-top" style="height: 300px;  overflow-x: hidden; overflow-y: scroll; width: auto;">
                        
                         {% for message in room_messages %}
                             <div class="ms-4 border-start p-3 my-3 ">
                                 <div class="d-flex justify-content-between ">
-                                    <small>@{{message.user.username}} {{message.created|timesince}} ago</small>
+                                    <div>
+                                        <img src="{{message.user.avatar.url}}" style="width:50px; height:50px;" class="rounded-5" alt="">
+                                        <small>@{{message.user.username}} {{message.created|timesince}} ago</small>
+                                    </div>
                                     {% if request.user == message.user %}
-                                    <a href="{% url 'delete-message' message.id %}">
+                                    <a href="{% url 'delete-message' message.id %}" >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash text-danger" viewBox="0 0 16 16">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
                                             <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
@@ -74,7 +80,7 @@
                                     </a>
                                     {% endif %}
                                 </div>
-                                <p>{{message.body}}</p>
+                                <p class="text-info">{{message.body}}</p>
                                 
                             </div>
                         {% endfor %}
@@ -96,8 +102,9 @@
                     </div>
                     <div style="background-color:#5e5d5d;" class="pb-2">
                         {% for user in participants %}
-                        <div class="ms-3 pt-2">
-                            <p class="text-info">@{{user.username}}</p>
+                        <div class="ms-3 pt-2 d-flex ">
+                            <img src="{{user.avatar.url}}" style="width:40px; height:40px;" class="rounded-5" alt="">
+                            <p class="text-info mt-2 ms-2">@{{user.username}}</p>
                         </div>
                     {% endfor %}
                     </div>  

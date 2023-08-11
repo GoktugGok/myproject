@@ -39,7 +39,7 @@
             </div>
         </div>
         <div style="background-color:#242424;font-family: 'Kanit', sans-serif;">
-            <form method="POST" action="" class="text-light mx-3 pt-3 ">
+            <form method="POST" action="" class="text-light mx-3 pt-3 " enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
                 <div class="mb-3 form_group ">
